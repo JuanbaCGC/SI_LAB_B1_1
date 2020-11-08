@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-backend-android.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-backend-gwt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-backend-headless.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-backend-jglfw.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-backend-jglfw-natives.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-backend-lwjgl.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-backend-lwjgl-natives.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-backend-robovm.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-natives.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-setup.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
