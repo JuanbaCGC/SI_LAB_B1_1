@@ -1,18 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="json-20200518.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Cris Carretero/Desktop/gdx.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cris Carretero/Desktop/gdx-backend-android.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cris Carretero/Desktop/gdx-backend-gwt.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cris Carretero/Desktop/gdx-backend-headless.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cris Carretero/Desktop/gdx-backend-jglfw.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cris Carretero/Desktop/gdx-backend-jglfw-natives.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cris Carretero/Desktop/gdx-backend-lwjgl.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cris Carretero/Desktop/gdx-backend-lwjgl-natives.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cris Carretero/Desktop/gdx-backend-robovm.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cris Carretero/Desktop/gdx-natives.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Cris Carretero/Desktop/gdx-setup.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+=======
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-13">
+>>>>>>> 5abc81f7b03b00279e4bad6b2b3023362de029b2
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+<<<<<<< HEAD
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-backend-android.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-backend-gwt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-backend-headless.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-backend-jglfw.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-backend-jglfw-natives.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-backend-lwjgl.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-backend-lwjgl-natives.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-backend-robovm.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-natives.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Desktop/gdx-setup.jar"/>
+=======
+	<classpathentry kind="lib" path="json-20200518.jar"/>
+	<classpathentry kind="lib" path="D:/Documents/3er curso/1er cuatrimestre/Sistemas Inteligentes/Practicas/Laberinto/Librerias/gdx.jar"/>
+	<classpathentry kind="lib" path="D:/Documents/3er curso/1er cuatrimestre/Sistemas Inteligentes/Practicas/Laberinto/Librerias/gdx-backend-android.jar"/>
+	<classpathentry kind="lib" path="D:/Documents/3er curso/1er cuatrimestre/Sistemas Inteligentes/Practicas/Laberinto/Librerias/gdx-backend-gwt.jar"/>
+	<classpathentry kind="lib" path="D:/Documents/3er curso/1er cuatrimestre/Sistemas Inteligentes/Practicas/Laberinto/Librerias/gdx-backend-headless.jar"/>
+	<classpathentry kind="lib" path="D:/Documents/3er curso/1er cuatrimestre/Sistemas Inteligentes/Practicas/Laberinto/Librerias/gdx-backend-jglfw.jar"/>
+	<classpathentry kind="lib" path="D:/Documents/3er curso/1er cuatrimestre/Sistemas Inteligentes/Practicas/Laberinto/Librerias/gdx-backend-jglfw-natives.jar"/>
+	<classpathentry kind="lib" path="D:/Documents/3er curso/1er cuatrimestre/Sistemas Inteligentes/Practicas/Laberinto/Librerias/gdx-backend-lwjgl.jar"/>
+	<classpathentry kind="lib" path="D:/Documents/3er curso/1er cuatrimestre/Sistemas Inteligentes/Practicas/Laberinto/Librerias/gdx-backend-lwjgl-natives.jar"/>
+	<classpathentry kind="lib" path="D:/Documents/3er curso/1er cuatrimestre/Sistemas Inteligentes/Practicas/Laberinto/Librerias/gdx-backend-robovm.jar"/>
+	<classpathentry kind="lib" path="D:/Documents/3er curso/1er cuatrimestre/Sistemas Inteligentes/Practicas/Laberinto/Librerias/gdx-natives.jar"/>
+	<classpathentry kind="lib" path="D:/Documents/3er curso/1er cuatrimestre/Sistemas Inteligentes/Practicas/Laberinto/Librerias/gdx-setup.jar"/>
+>>>>>>> 5abc81f7b03b00279e4bad6b2b3023362de029b2
 	<classpathentry kind="output" path="bin"/>
 </classpath>

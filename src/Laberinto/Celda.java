@@ -8,7 +8,7 @@ import org.json.JSONObject;
 public class Celda {
 	 	int x;
 	    int y;
-	    int heuristica;
+	    int costo;
 	    
 	    boolean norte,sur,oeste,este;
 	   
@@ -19,7 +19,7 @@ public class Celda {
 	        sur = false;
 	        oeste = false;
 	        este = false;
-	        this.heuristica = (int) (Math.random()*10);
+	        this.costo = (int) (Math.random() * 4) + 1;
 	    }
 
 	    public boolean getNorte() {
@@ -54,12 +54,12 @@ public class Celda {
 			this.este = este;
 		}
 
-		public int getHeuristica() {
-			return heuristica;
+		public int getCosto() {
+			return costo;
 		}
 
-		public void setHeuristica(int heuristica) {
-			this.heuristica = heuristica;
+		public void setCosto(int costo) {
+			this.costo = costo;
 		}
 
 		@Override
