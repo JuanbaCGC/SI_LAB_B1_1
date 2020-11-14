@@ -30,6 +30,8 @@ public class ClasePrincipal extends JPanel {
 	static int columnas;
 	
 	public static void obtenerDimensionesJson(){
+		System.out.println("El laberinto con las dimensiones indicadas puede ser distinto al mostrado en el pixmap\n"
+				+ "debido a que son dos archivos .json distintos.\n");
 		do {
 			System.out.println("Por favor, introduce el numero de filas del laberinto de sucesores que desea leer: ");
 			filas = TECLADO.nextInt();

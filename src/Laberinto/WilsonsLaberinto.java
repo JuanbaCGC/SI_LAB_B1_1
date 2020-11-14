@@ -139,20 +139,15 @@ public class WilsonsLaberinto {
 			}
 
 			if (estaCompleto()) {
-				cFinal = siguienteCelda;
 				Celda celdaFinal = siguienteCelda;
-				List<Sucesor> mSucesores = sucesores(celdaFinal);
-				for (int i = 0; i < mSucesores.size(); i++) {
-					Sucesor s = mSucesores.get(i);
-					System.out.println("Sucesor Final: " + s);
+				System.out.println("Celda final: " +celdaFinal);
+				for (int i=0; i < laberinto.size(); i++) {
+					List<Sucesor> mSucesores = sucesores(laberinto.get(i));
+					Celda celdaSucesores = laberinto.get(i);
+					System.out.println("Celda: " +laberinto.get(i));
+					System.out.println("Sucesores: " + sucesores(laberinto.get(i)));
 				}
-				System.out.println("Celda final: " + celdaFinal);
 				practica2();
-				/*
-				 * System.out.println("Estados del camino recorrido:"); for(int j = 0; j <
-				 * laberinto.size(); j++) { Celda celd = (Celda) laberinto.get(j); Estado estad
-				 * = new Estado(new Id(celd.x,celd.y)); System.out.println(estad.toString()); }
-				 */
 			}
 
 		}
@@ -240,8 +235,8 @@ public class WilsonsLaberinto {
 	// Crear estructura JSON sucesores.
 	public JSONObject toJSONSucesores() {
 		JSONObject sucesoresJSON = new JSONObject();
-		JSONArray cInicial = new JSONArray();
-		JSONArray cObjetivo = new JSONArray();
+		String inicial = "(0, 0)";
+		String objetivo = "("+(altura-1)+", "+(anchura-1)+")";
 
 		try {
 			Field changeMap = sucesoresJSON.getClass().getDeclaredField("map");
@@ -251,12 +246,6 @@ public class WilsonsLaberinto {
 		} catch (IllegalAccessException | NoSuchFieldException e) {
 			System.out.println("Excepción.");
 		}
-		
-		cInicial.put(0, 0);
-		cInicial.put(1, 0);
-		
-		String inicial = "(0, 0)";
-		String objetivo = "("+(altura-1)+", "+(anchura-1)+")";
 
 		sucesoresJSON.put("INITIAL", inicial);
 		sucesoresJSON.put("OBJETIVE", objetivo);
