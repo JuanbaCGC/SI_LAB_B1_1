@@ -31,7 +31,7 @@ public class WilsonsLaberinto {
 		Celda inicial = new Celda(aleatorio.nextInt(altura), aleatorio.nextInt(anchura));
 		// Primer nodo
 		laberinto.add(inicial);
-		System.out.println("Celda comienzo: fila -->" + inicial.x + " columna -->" + inicial.y);
+		System.out.println("\n\s\s\s\s LABERINTO\nCelda comienzo: fila --> " + inicial.x + " columna --> " + inicial.y);
 
 		for (int x = 0; x < altura; x++) {
 			for (int y = 0; y < anchura; y++) {
@@ -140,11 +140,11 @@ public class WilsonsLaberinto {
 
 			if (estaCompleto()) {
 				Celda celdaFinal = siguienteCelda;
-				System.out.println("Celda final: " +celdaFinal);
-				for (int i=0; i < laberinto.size(); i++) {
+				System.out.println("Celda final: fila --> " + celdaFinal.x + " columna --> " + celdaFinal.y+"\n\n\s\s\s\s SUCESORES");
+				for (int i = 0; i < laberinto.size(); i++) {
 					List<Sucesor> mSucesores = sucesores(laberinto.get(i));
 					Celda celdaSucesores = laberinto.get(i);
-					System.out.println("Celda: " +laberinto.get(i));
+					System.out.println("Celda: " + laberinto.get(i));
 					System.out.println("Sucesores: " + sucesores(laberinto.get(i)));
 				}
 				practica2();
@@ -235,8 +235,8 @@ public class WilsonsLaberinto {
 	// Crear estructura JSON sucesores.
 	public JSONObject toJSONSucesores() {
 		JSONObject sucesoresJSON = new JSONObject();
-		String inicial = "(0, 0)";
-		String objetivo = "("+(altura-1)+", "+(anchura-1)+")";
+		JSONArray cInicial = new JSONArray();
+		JSONArray cObjetivo = new JSONArray();
 
 		try {
 			Field changeMap = sucesoresJSON.getClass().getDeclaredField("map");
@@ -246,6 +246,12 @@ public class WilsonsLaberinto {
 		} catch (IllegalAccessException | NoSuchFieldException e) {
 			System.out.println("Excepción.");
 		}
+
+		cInicial.put(0, 0);
+		cInicial.put(1, 0);
+
+		String inicial = "(0, 0)";
+		String objetivo = "(" + (altura - 1) + ", " + (anchura - 1) + ")";
 
 		sucesoresJSON.put("INITIAL", inicial);
 		sucesoresJSON.put("OBJETIVE", objetivo);
@@ -266,6 +272,7 @@ public class WilsonsLaberinto {
 		return celda;
 	}
 
+	// Método que comprueba las celdas sucesoras a una dada
 	public List<Sucesor> sucesores(Celda celda) {
 		List<Sucesor> sucesoresX = new LinkedList<>();
 		int x = celda.x;
@@ -296,11 +303,6 @@ public class WilsonsLaberinto {
 		return sucesoresX;
 	}
 
-	/*
-	 * public Boolean objetivo(int f, int c) { return (f == cFinal.x && c ==
-	 * cFinal.y); }
-	 */
-
 	public void practica2() {
 		int posicion = (int) Math.random() * laberinto.size();
 		Celda inicial = laberinto.get(posicion);
@@ -310,7 +312,7 @@ public class WilsonsLaberinto {
 	public PriorityQueue<Nodo> resolverProblema(PriorityQueue<Nodo> frontera, Celda inicial) {
 		boolean encontrado = false;
 
-		System.out.println("La celda inicial para el problema es --------> " + inicial.toString());
+		System.out.println("\n\n\s\s\s\s FRONTERA\nLa celda inicial para el problema es --------> " + inicial.toString()+"\nPor tanto:");
 		Id idInicial = new Id(inicial.x, inicial.y);
 		Estado estadoInicial = new Estado(idInicial, 0);
 		Nodo nodoRaiz = new Nodo(estadoInicial, null, 0, 0, 0, 5, null);
