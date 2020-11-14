@@ -1,0 +1,5 @@
+{
+    "INITIAL": "(0, 0)",
+    "OBJETIVE": "(14, 19)",
+    "MAZE": "sucesores_15X20_maze.json"
+}
