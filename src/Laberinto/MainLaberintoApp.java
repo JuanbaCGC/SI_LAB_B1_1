@@ -105,8 +105,6 @@ public class MainLaberintoApp extends ApplicationAdapter {
 
 		batch.begin();
 		batch.draw(tex, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		// batch.draw(tex, 0, -557, Gdx.graphics.getWidth() + 560
-		// ,Gdx.graphics.getHeight() + 555 );
 		batch.end();
 	}
 
@@ -142,7 +140,6 @@ public class MainLaberintoApp extends ApplicationAdapter {
 	        
 	        int x = y;
 	        y = xAux;
-	        //pixmap.fillRectangle(x, y, tamañoCelda, tamañoCelda);
 	        if (!celda.norte) {
 	        	// 
 	            pixmap.fillRectangle(x, y - celdaPadding, tamañoCelda, celdaPadding);

@@ -83,14 +83,12 @@ public class Nodo implements Comparable<Nodo> {
 			r = -1;
 		else {
 			r = 0;
-			//if (o.getEstado().x < this.estado.x)
 			if(o.getEstado().getIdEstado().getFila() < this.estado.getIdEstado().getFila())
 				r = +1;
 			else if (o.getEstado().getIdEstado().getFila() > this.estado.getIdEstado().getFila())
 				r = -1;
 			else {
 				r = 0;
-				//if(o.getEstado().y < this.estado.y)
 				if(o.getEstado().getIdEstado().getColumna() < this.estado.getIdEstado().getColumna())
 					r = +1;
 				else if(o.getEstado().getIdEstado().getColumna() > this.estado.getIdEstado().getColumna())

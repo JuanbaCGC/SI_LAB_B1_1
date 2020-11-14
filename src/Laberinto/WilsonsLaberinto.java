@@ -31,7 +31,7 @@ public class WilsonsLaberinto {
 		Celda inicial = new Celda(aleatorio.nextInt(altura), aleatorio.nextInt(anchura));
 		// Primer nodo
 		laberinto.add(inicial);
-		System.out.println("\n\s\s\s\s LABERINTO\nCelda comienzo: fila --> " + inicial.x + " columna --> " + inicial.y);
+		System.out.println("\n LABERINTO\nCelda comienzo: fila --> " + inicial.x + " columna --> " + inicial.y);
 
 		for (int x = 0; x < altura; x++) {
 			for (int y = 0; y < anchura; y++) {
@@ -49,9 +49,6 @@ public class WilsonsLaberinto {
 		if (camino.isEmpty()) {
 			Random rand = new Random();
 			Celda celdaComienzo = noVisitadas.remove(rand.nextInt(noVisitadas.size()));
-			// Estado estadoComienzo = new Estado (new Id
-			// (celdaComienzo.x,celdaComienzo.y));
-			// System.out.println(estadoComienzo);
 			camino.add(celdaComienzo);
 		} else {
 			Celda ultimaCelda = camino.peek();
@@ -140,7 +137,7 @@ public class WilsonsLaberinto {
 
 			if (estaCompleto()) {
 				Celda celdaFinal = siguienteCelda;
-				System.out.println("Celda final: fila --> " + celdaFinal.x + " columna --> " + celdaFinal.y+"\n\n\s\s\s\s SUCESORES");
+				System.out.println("Celda final: fila --> " + celdaFinal.x + " columna --> " + celdaFinal.y+"\n"+"\n SUCESORES");
 				for (int i = 0; i < laberinto.size(); i++) {
 					List<Sucesor> mSucesores = sucesores(laberinto.get(i));
 					Celda celdaSucesores = laberinto.get(i);
@@ -312,7 +309,7 @@ public class WilsonsLaberinto {
 	public PriorityQueue<Nodo> resolverProblema(PriorityQueue<Nodo> frontera, Celda inicial) {
 		boolean encontrado = false;
 
-		System.out.println("\n\n\s\s\s\s FRONTERA\nLa celda inicial para el problema es --------> " + inicial.toString()+"\nPor tanto:");
+		System.out.println("\n FRONTERA\nLa celda inicial para el problema es --------> " + inicial.toString()+"\nPor tanto:");
 		Id idInicial = new Id(inicial.x, inicial.y);
 		Estado estadoInicial = new Estado(idInicial, 0);
 		Nodo nodoRaiz = new Nodo(estadoInicial, null, 0, 0, 0, 5, null);
@@ -322,7 +319,6 @@ public class WilsonsLaberinto {
 		// Vemos los vecinos de esta celda
 		if (inicial.getNorte() == true) {
 			for (int j = 0; j < laberinto.size() && !encontrado; j++) {
-				// Celda siguiente = new Celda(inicial.x - 1, inicial.y);
 				Id siguienteId = new Id(inicial.x - 1, inicial.y);
 				Estado siguienteEstado = new Estado(siguienteId, 0);
 				Celda comparar = laberinto.get(j);
@@ -331,7 +327,6 @@ public class WilsonsLaberinto {
 					id = id + 1;
 					Nodo siguienteNodo = new Nodo(siguienteEstado, nodoRaiz, nodoRaiz.getCosto_acumulado() + 1,
 							nodoRaiz.getProfundidad() + 1, id, 0, "N");
-					// System.out.println("Nodo padre : " + siguienteNodo.getPadre());
 					System.out.println("Vecino norte encontrado : " + siguienteNodo.toString());
 					frontera.add(siguienteNodo);
 				}
@@ -342,7 +337,6 @@ public class WilsonsLaberinto {
 
 		if (inicial.getEste() == true) {
 			for (int j = 0; j < laberinto.size() && !encontrado; j++) {
-				// Celda siguiente = new Celda(inicial.x, inicial.y + 1);
 				Id siguienteId = new Id(inicial.x, inicial.y + 1);
 				Estado siguienteEstado = new Estado(siguienteId, 0);
 				Celda comparar = laberinto.get(j);
@@ -360,7 +354,6 @@ public class WilsonsLaberinto {
 			System.out.println("No tiene vecino en el este");
 		if (inicial.getSur() == true) {
 			for (int j = 0; j < laberinto.size() && !encontrado; j++) {
-				// Celda siguiente = new Celda(inicial.x + 1, inicial.y);
 				Id siguienteId = new Id(inicial.x + 1, inicial.y);
 				Estado siguienteEstado = new Estado(siguienteId, 0);
 				Celda comparar = laberinto.get(j);
@@ -379,7 +372,6 @@ public class WilsonsLaberinto {
 
 		if (inicial.getOeste() == true) {
 			for (int j = 0; j < laberinto.size() && !encontrado; j++) {
-				// Celda siguiente = new Celda(inicial.x, inicial.y - 1);
 				Id siguienteId = new Id(inicial.x, inicial.y - 1);
 				Estado siguienteEstado = new Estado(siguienteId, 0);
 				Celda comparar = laberinto.get(j);
@@ -401,6 +393,7 @@ public class WilsonsLaberinto {
 			System.out.println("El primer nodo de la priorityqueue es antes de insertar los nodos de prueba: "
 					+ siguienteNodo.toString());
 		}
+		
 		// Para comprobar que la frontera se ha creado de manera correcta, introducimos
 		// dos nodos con id 0, de manera que sus filas y columnas decidirán cual se
 		// coloca con mayor prioridad (primero el que menor fila tenga y si coinciden,
