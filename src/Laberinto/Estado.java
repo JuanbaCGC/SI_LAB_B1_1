@@ -1,12 +1,15 @@
 package Laberinto;
 
-public class Estado {
-	private Id idEstado;
-	private int valor;
+import org.json.JSONObject;
 
-	public Estado(Id idEstado, int valor) {
+public class Estado {
+	Id idEstado;
+	double valor;
+ 
+	public Estado(Id idEstado, double valor) {
 		this.idEstado = idEstado;
 		this.valor = valor;
+		
 	}
 
 	public Id getIdEstado() {
@@ -17,11 +20,11 @@ public class Estado {
 		this.idEstado = idEstado;
 	}
 
-	public int getValor() {
+	public double getValor() {
 		return valor;
 	}
 
-	public void setValor(int valor) {
+	public void setValor(double valor) {
 		this.valor = valor;
 	}
 
@@ -29,5 +32,10 @@ public class Estado {
 	public String toString() {
 		return "(" + idEstado.toString() + ")";
 	}
-
+	
+	public JSONObject getJSON(){
+    	JSONObject jsonValor = new JSONObject();
+    	jsonValor.put("value",valor);
+    	return jsonValor; 	
+    }
 }

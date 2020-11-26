@@ -8,7 +8,8 @@ import org.json.JSONObject;
 public class Celda {
 	 	int x;
 	    int y;
-	    int costo;
+	    int heuristica;
+	    int valor;
 	    
 	    boolean norte,sur,oeste,este;
 	   
@@ -19,9 +20,16 @@ public class Celda {
 	        sur = false;
 	        oeste = false;
 	        este = false;
-	        this.costo = (int) (Math.random() * 4) + 1;
+	        this.heuristica = (int) (Math.random()*10);
 	    }
+	    
+	    public int getValor() {
+			return valor;
+		}
 
+		public void setValor(int valor) {
+			this.valor = valor;
+		}
 	    public boolean getNorte() {
 			return norte;
 		}
@@ -54,12 +62,12 @@ public class Celda {
 			this.este = este;
 		}
 
-		public int getCosto() {
-			return costo;
+		public int getHeuristica() {
+			return heuristica;
 		}
 
-		public void setCosto(int costo) {
-			this.costo = costo;
+		public void setHeuristica(int heuristica) {
+			this.heuristica = heuristica;
 		}
 
 		@Override
@@ -99,7 +107,6 @@ public class Celda {
 	    	neighbours.add(sur);
 	    	neighbours.add(oeste);
 	    	
-	    	json.put("value", 0);
 	    	json.put("neighbors", neighbours);
 	    	
 	    	return json; 	

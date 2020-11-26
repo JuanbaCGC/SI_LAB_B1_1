@@ -1,32 +1,27 @@
 package Laberinto;
 
 public class Sucesor {
-	public enum Movimiento{
-		N,
-		E,
-		S,
-		O
-	}
-	private Movimiento movimiento;
-	private Celda estado;
+	
+	private String accion;
+	private Estado estado;
 	private int costo;
 	
-	public Sucesor(Movimiento movimiento, Celda estado, int costo){
-		this.movimiento = movimiento;
+	public Sucesor( String accion,Estado estado, int costo){
+		this.accion= accion;
 		this.estado = estado;
 		this.costo = costo;
 	}
 	
-	public Movimiento getMovimiento() {
-		return movimiento;
+	public String getAccion() {
+		return accion;
 	}
-	public void setMovimiento(Movimiento movimiento) {
-		this.movimiento = movimiento;
+	public void setAccion(String movimiento) {
+		this.accion = movimiento;
 	}
-	public Celda getEstado() {
+	public Estado getEstado() {
 		return estado;
 	}
-	public void setEstado(Celda estado) {
+	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 	public int getCosto() {
@@ -40,7 +35,7 @@ public class Sucesor {
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("['");
-		sb.append(movimiento);
+		sb.append(accion);
 		sb.append("',");
 		sb.append(estado);
 		sb.append(",");

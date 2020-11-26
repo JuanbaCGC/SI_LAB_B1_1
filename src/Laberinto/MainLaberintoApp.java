@@ -25,7 +25,10 @@ public class MainLaberintoApp extends ApplicationAdapter {
 	SpriteBatch batch;
 	int anchuraLaberinto = 1;
 	int alturaLaberinto = 1;
+	String estrategialab = "";
 	WilsonsLaberinto laberinto;
+	ResolverLaberinto rl;
+	Problema problema;
 	Texture tex;
 
 	boolean acabado = false;
@@ -36,22 +39,28 @@ public class MainLaberintoApp extends ApplicationAdapter {
 
 	float timer = 0.0f;
 	List<Celda> celdasJSON;
+	List<Estado> estadosJSON;
+	List<Estado> valoresJSON;
+	String estrategia;
 
 	public void setAnchuraAltura(int altura, int anchura) {
-		anchuraLaberinto = anchura;
 		alturaLaberinto = altura;
+		anchuraLaberinto = anchura;
+	}
+
+	public void setEstrategia(String estrategia) {
+		estrategialab = estrategia;
 	}
 
 	public void create() {
 		batch = new SpriteBatch();
-		pixmap = new Pixmap(alturaLaberinto * (tamañoCelda)*2,
-				anchuraLaberinto * (tamañoCelda)*2, Format.RGBA8888);
-		laberinto = new WilsonsLaberinto(alturaLaberinto, anchuraLaberinto);
+		pixmap = new Pixmap(alturaLaberinto * (tamañoCelda) * 2, anchuraLaberinto * (tamañoCelda) * 2, Format.RGBA8888);
+		laberinto = new WilsonsLaberinto(alturaLaberinto, anchuraLaberinto, estrategialab);
+		laberinto.inicializarLaberinto();
 		if (celdasJSON != null) {
 			laberinto.laberinto = celdasJSON;
 			tex = new Texture(generatePixmap());
 		}
-
 	}
 
 	@Override
@@ -61,33 +70,49 @@ public class MainLaberintoApp extends ApplicationAdapter {
 			tex = new Texture(generatePixmap());
 			timer = 0;
 		} else {
+			List<Celda> maze = laberinto.laberinto;
+			ClaseJSONEscribir jsone;
+			List<Estado> celdasValor;
+			if (!acabado && fromJSON) {
+				rl = new ResolverLaberinto(alturaLaberinto, anchuraLaberinto, estrategialab, maze);
+				rl.inicializarValoresJSON(estadosJSON);
+				valoresJSON = rl.valoresJSON;
+				Estado estadoInicial = rl.obtenerEstadoInicialJSON();
+				Estado objetivo = rl.obtenerEstadoObjetivoJSON();
+				problema = new Problema(estadoInicial, objetivo, alturaLaberinto, anchuraLaberinto, estrategia, maze,
+						valoresJSON);
+				rl.busqueda(problema, 1000000, estrategialab);
+				System.out.println("Estrategia utilizada: "+estrategialab);
+				acabado = true;
+			}
 			if (!acabado && !fromJSON) {
+				celdasValor = laberinto.celdasValor;
+				jsone = new ClaseJSONEscribir(alturaLaberinto, anchuraLaberinto,laberinto.laberinto,celdasValor);
 				FileHandle fh;
-				fh = new FileHandle("Lab_Filas_Columnas.png");
+				fh = new FileHandle("puzzle_loop_" + alturaLaberinto + "x" + anchuraLaberinto + "_20.png");
 
 				PixmapIO.writePNG(fh, pixmap);
 				acabado = true;
 
-				String laberintoJSON = laberinto.toJSON().toString(4);
-				String sucesoresJSON = laberinto.toJSONSucesores().toString(4);
+				String laberintoJSON = jsone.toJSON().toString(4);
+				String problemaJSON = jsone.toJSONProblema().toString(4);
 
 				try {
-					File f = new File("./Lab_Filas_Columnas.json");
-					File s = new File("sucesores_"+alturaLaberinto+"X"+anchuraLaberinto+".json");
+					File f = new File("problema_" + alturaLaberinto + "x" + anchuraLaberinto + "_maze.json");
+					File s = new File("problema_" + alturaLaberinto + "x" + anchuraLaberinto + ".json");
 					FileOutputStream fos = new FileOutputStream(f);
 					FileOutputStream fss = new FileOutputStream(s);
 
 					if (!f.exists()) {
 						f.createNewFile();
 					}
-					
+
 					if (!s.exists()) {
 						s.createNewFile();
 					}
 
 					fos.write(laberintoJSON.getBytes());
-					fss.write(sucesoresJSON.getBytes());
-
+					fss.write(problemaJSON.getBytes());
 
 					fos.flush();
 					fss.flush();
@@ -102,7 +127,6 @@ public class MainLaberintoApp extends ApplicationAdapter {
 
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
 		batch.begin();
 		batch.draw(tex, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		batch.end();
@@ -111,7 +135,7 @@ public class MainLaberintoApp extends ApplicationAdapter {
 	public void dispose() {
 		batch.dispose();
 	}
-	
+
 	public void setFromJSON(boolean fromJSON) {
 		this.fromJSON = fromJSON;
 	}
@@ -132,31 +156,34 @@ public class MainLaberintoApp extends ApplicationAdapter {
 		return pixmap;
 	}
 
-	 private void drawCelda(Celda celda) {
-	        int totalCeldaSize = celdaPadding + tamañoCelda + celdaPadding;
+	private void drawCelda(Celda celda) {
+		int totalCeldaSize = celdaPadding + tamañoCelda + celdaPadding;
 
-	        int xAux = (celda.x * totalCeldaSize) + celdaPadding;
-	        int y = (celda.y * totalCeldaSize) + celdaPadding;
-	        
-	        int x = y;
-	        y = xAux;
-	        if (!celda.norte) {
-	        	// 
-	            pixmap.fillRectangle(x, y - celdaPadding, tamañoCelda, celdaPadding);
-	        }
-	        if (!celda.sur) {
-	            pixmap.fillRectangle(x, y + tamañoCelda, tamañoCelda, celdaPadding);
-	        }
-	        if (!celda.este) {
-	            pixmap.fillRectangle(x + tamañoCelda, y, celdaPadding, tamañoCelda);
-	        }
-	        if (!celda.oeste) {
-	            pixmap.fillRectangle(x - celdaPadding, y, celdaPadding, tamañoCelda);
-	        }
-	    	
-	    }
+		int xAux = (celda.x * totalCeldaSize) + celdaPadding;
+		int y = (celda.y * totalCeldaSize) + celdaPadding;
+
+		int x = y;
+		y = xAux;
+
+		if (!celda.norte) {
+			pixmap.fillRectangle(x, y - celdaPadding, tamañoCelda, celdaPadding);
+		}
+		if (!celda.sur) {
+			pixmap.fillRectangle(x, y + tamañoCelda, tamañoCelda, celdaPadding);
+		}
+		if (!celda.este) {
+			pixmap.fillRectangle(x + tamañoCelda, y, celdaPadding, tamañoCelda);
+		}
+		if (!celda.oeste) {
+			pixmap.fillRectangle(x - celdaPadding, y, celdaPadding, tamañoCelda);
+		}
+	}
 
 	public void setCeldasJSON(List<Celda> laberinto) {
 		this.celdasJSON = laberinto;
+	}
+
+	public void setEstadosJson(List<Estado> estados) {
+		this.estadosJSON = estados;
 	}
 }
