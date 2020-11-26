@@ -28,30 +28,50 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 public class ClasePrincipal extends JPanel {
 
-	private static final Scanner TECLADO = new Scanner(System.in);
+	private static Scanner TECLADO = new Scanner(System.in);
 	static int filas;
 	static int columnas;
 	static String estrategia;
-
+	
 	public static void obtenerDimensionesJson() {
 		do {
-			System.out.println("Por favor, introduce el numero de filas del laberinto JSON que desea leer: ");
-			filas = TECLADO.nextInt();
+			try{
+				System.out.println("Por favor, introduce el numero de filas del laberinto JSON que desea leer: ");
+				filas = TECLADO.nextInt();
+			} catch (Exception e) {
+				System.err.println("Error solo se aceptan datos numericos.");
+				TECLADO = new Scanner(System.in);
+			}
 		} while (filas < 2);
 		do {
-			System.out.println("Por favor, introduce el numero de columnas del laberinto JSON que desea leer: ");
-			columnas = TECLADO.nextInt();
+			try{
+				System.out.println("Por favor, introduce el numero de columnas del laberinto JSON que desea leer: ");
+				columnas = TECLADO.nextInt();
+			} catch (Exception e) {
+				System.err.println("Error solo se aceptan datos numericos.");
+				TECLADO = new Scanner(System.in);
+			}
 		} while (columnas < 2);
 	}
 
 	public static void obtenerDimensionesMatriz() {
 		do {
-			System.out.println("Por favor, introduce el numero de filas que tendra el laberinto: ");
-			filas = TECLADO.nextInt();
+			try{
+				System.out.println("Por favor, introduce el numero de filas que tendra el laberinto: ");
+				filas = TECLADO.nextInt();
+			}catch(Exception e){
+				System.err.println("Error solo se aceptan datos numericos.");
+				TECLADO = new Scanner(System.in);
+			}
 		} while (filas < 2);
 		do {
-			System.out.println("Por favor, introduce el numero de columnas que tendra el laberinto: ");
-			columnas = TECLADO.nextInt();
+			try{
+				System.out.println("Por favor, introduce el numero de columnas que tendra el laberinto: ");
+				columnas = TECLADO.nextInt();
+			}catch(Exception e){
+				System.err.println("Error solo se aceptan datos numericos.");
+				TECLADO = new Scanner(System.in);
+			}
 		} while (columnas < 2);
 
 	}
@@ -60,37 +80,42 @@ public class ClasePrincipal extends JPanel {
 		boolean salir = false;
 		int e = 0;
 		do {
-			System.out.println(
-					"Por favor, elija la estrategia que desea seguir en el algoritmo de búsqueda:\n1.Búsqueda en anchura.\n2.Búsqueda en profundidad acotada.\n3.Búsqueda de costo uniforme.\n4.Búsqueda voraz.\n5.Búsqueda de A* ");
-			e = TECLADO.nextInt();
-			switch (e) {
-			case 1:
-				System.out.println("Ha elegido la estrategia de búsqueda en anchura.");
-				estrategia = "BREADTH";
-				salir = true;
-				break;
-			case 2:
-				System.out.println("Ha elegido la estrategia de búsqueda en profundidad acotada.");
-				estrategia = "DEPTH";
-				salir = true;
-				break;
-			case 3:
-				System.out.println("Ha elegido la estrategia de búsqueda de coste uniforme.");
-				estrategia = "UNIFORM";
-				salir = true;
-				break;
-			case 4:
-				System.out.println("Ha elegido la estrategia de búsqueda voraz.");
-				estrategia = "GREEDY";
-				salir = true;
-				break;
-			case 5:
-				System.out.println("Ha elegido la estrategia de búsqueda A*.");
-				estrategia = "A";
-				salir = true;
-				break;
-			default:
-				System.out.println("Opción no válida.\n");
+			try{
+				System.out.println(
+						"Por favor, elija la estrategia que desea seguir en el algoritmo de búsqueda:\n1.Búsqueda en anchura.\n2.Búsqueda en profundidad acotada.\n3.Búsqueda de costo uniforme.\n4.Búsqueda voraz.\n5.Búsqueda de A* ");
+				e = TECLADO.nextInt();
+				switch (e) {
+				case 1:
+					System.out.println("Ha elegido la estrategia de búsqueda en anchura.");
+					estrategia = "BREADTH";
+					salir = true;
+					break;
+				case 2:
+					System.out.println("Ha elegido la estrategia de búsqueda en profundidad acotada.");
+					estrategia = "DEPTH";
+					salir = true;
+					break;
+				case 3:
+					System.out.println("Ha elegido la estrategia de búsqueda de coste uniforme.");
+					estrategia = "UNIFORM";
+					salir = true;
+					break;
+				case 4:
+					System.out.println("Ha elegido la estrategia de búsqueda voraz.");
+					estrategia = "GREEDY";
+					salir = true;
+					break;
+				case 5:
+					System.out.println("Ha elegido la estrategia de búsqueda A*.");
+					estrategia = "A";
+					salir = true;
+					break;
+				default:
+					System.out.println("Opción no válida.\n");
+				}
+			}catch(Exception i){
+				System.err.println("Error solo se aceptan datos numericos.\n");				
+				TECLADO = new Scanner(System.in);
 			}
 		}while(!salir);
 	
@@ -131,8 +156,8 @@ public class ClasePrincipal extends JPanel {
 				}
 				
 			} catch (NumberFormatException e) {
-				System.err.println("Error solo se aceptan datos numericos.");
-				salir = true;
+				System.err.println("Error solo se aceptan datos numericos, vuelva a introducir la opción.");
+				TECLADO = new Scanner(System.in);
 			}
 
 				if (!salir && valido) {
