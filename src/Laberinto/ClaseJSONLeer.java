@@ -11,16 +11,16 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ClaseJSONLeer {
-	
-	 int filas;
-	 int columnas;
-	
+
+	int filas;
+	int columnas;
+
 	public ClaseJSONLeer(int f, int c) {
 		this.filas = f;
 		this.columnas = c;
-		
+
 	}
-	
+
 	public MainLaberintoApp getLaberintoFromJSON() {
 		MainLaberintoApp app = new MainLaberintoApp();
 		try {
@@ -48,7 +48,7 @@ public class ClaseJSONLeer {
 		}
 		return app;
 	}
-	
+
 	public Celda obtenerCelda(List<Celda> lista, int x, int y) {
 		Iterator it = lista.iterator();
 		Celda encontrada = null;
@@ -61,7 +61,7 @@ public class ClaseJSONLeer {
 		}
 		return encontrada;
 	}
-	
+
 	public JSONObject leerJSON() throws Exception {
 		String data = "";
 		try {
@@ -73,14 +73,14 @@ public class ClaseJSONLeer {
 
 		return new JSONObject(data);
 	}
-	
+
 	public JSONObject leerJSONProblema() throws Exception {
 
 		String data = new String(Files.readAllBytes(Paths.get("./problema_" + filas + "x" + columnas + ".json")));
 
 		return new JSONObject(data);
 	}
-	
+
 	public List<Celda> getJSONCells(JSONObject demo) {
 		List<Celda> cells = new ArrayList<>();
 		try {
@@ -165,9 +165,8 @@ public class ClaseJSONLeer {
 
 		return cells;
 	}
-	
 
-	public  List<Estado> getJSONEstados(List<Celda> celdas) {
+	public List<Estado> getJSONEstados(List<Celda> celdas) {
 		List<Estado> estados = new LinkedList<>();
 		Id id = null;
 		Estado e = null;
@@ -179,6 +178,4 @@ public class ClaseJSONLeer {
 		return estados;
 	}
 
-
 }
-

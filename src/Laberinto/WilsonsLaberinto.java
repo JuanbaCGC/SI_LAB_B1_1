@@ -34,7 +34,6 @@ public class WilsonsLaberinto {
 	Estado e;
 	Id id;
 
-
 	public WilsonsLaberinto(int altura, int anchura, String estrategia) {
 		this.anchura = anchura;
 		this.altura = altura;

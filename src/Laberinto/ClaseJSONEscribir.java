@@ -8,20 +8,20 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ClaseJSONEscribir {
-	
+
 	int altura;
 	int anchura;
 	ResolverLaberinto a;
 	List<Celda> laberinto;
 	List<Estado> celdasValor;
-	
-	public ClaseJSONEscribir(int f, int c,List<Celda> laberinto,List<Estado> celdasValor) {
+
+	public ClaseJSONEscribir(int f, int c, List<Celda> laberinto, List<Estado> celdasValor) {
 		this.altura = f;
 		this.anchura = c;
 		this.laberinto = laberinto;
 		this.celdasValor = celdasValor;
 	}
-	
+
 	public JSONObject toJSON() {
 		JSONObject laberintoJSON = new JSONObject();
 		JSONArray c = new JSONArray();
@@ -121,6 +121,5 @@ public class ClaseJSONEscribir {
 
 		return problemaJSON;
 	}
-
 
 }

@@ -5,11 +5,10 @@ import org.json.JSONObject;
 public class Estado {
 	Id idEstado;
 	double valor;
- 
+
 	public Estado(Id idEstado, double valor) {
 		this.idEstado = idEstado;
 		this.valor = valor;
-		
 	}
 
 	public Id getIdEstado() {
@@ -32,10 +31,10 @@ public class Estado {
 	public String toString() {
 		return "(" + idEstado.toString() + ")";
 	}
-	
-	public JSONObject getJSON(){
-    	JSONObject jsonValor = new JSONObject();
-    	jsonValor.put("value",valor);
-    	return jsonValor; 	
-    }
+
+	public JSONObject getJSON() {
+		JSONObject jsonValor = new JSONObject();
+		jsonValor.put("value", valor);
+		return jsonValor;
+	}
 }

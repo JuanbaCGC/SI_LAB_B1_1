@@ -1,4 +1,3 @@
-
 package Laberinto;
 
 import java.awt.Graphics;
@@ -32,10 +31,10 @@ public class ClasePrincipal extends JPanel {
 	static int filas;
 	static int columnas;
 	static String estrategia;
-	
+
 	public static void obtenerDimensionesJson() {
 		do {
-			try{
+			try {
 				System.out.println("Por favor, introduce el numero de filas del laberinto JSON que desea leer: ");
 				filas = TECLADO.nextInt();
 			} catch (Exception e) {
@@ -44,7 +43,7 @@ public class ClasePrincipal extends JPanel {
 			}
 		} while (filas < 2);
 		do {
-			try{
+			try {
 				System.out.println("Por favor, introduce el numero de columnas del laberinto JSON que desea leer: ");
 				columnas = TECLADO.nextInt();
 			} catch (Exception e) {
@@ -56,19 +55,19 @@ public class ClasePrincipal extends JPanel {
 
 	public static void obtenerDimensionesMatriz() {
 		do {
-			try{
+			try {
 				System.out.println("Por favor, introduce el numero de filas que tendra el laberinto: ");
 				filas = TECLADO.nextInt();
-			}catch(Exception e){
+			} catch (Exception e) {
 				System.err.println("Error solo se aceptan datos numericos.");
 				TECLADO = new Scanner(System.in);
 			}
 		} while (filas < 2);
 		do {
-			try{
+			try {
 				System.out.println("Por favor, introduce el numero de columnas que tendra el laberinto: ");
 				columnas = TECLADO.nextInt();
-			}catch(Exception e){
+			} catch (Exception e) {
 				System.err.println("Error solo se aceptan datos numericos.");
 				TECLADO = new Scanner(System.in);
 			}
@@ -80,7 +79,7 @@ public class ClasePrincipal extends JPanel {
 		boolean salir = false;
 		int e = 0;
 		do {
-			try{
+			try {
 				System.out.println(
 						"Por favor, elija la estrategia que desea seguir en el algoritmo de búsqueda:\n1.Búsqueda en anchura.\n2.Búsqueda en profundidad acotada.\n3.Búsqueda de costo uniforme.\n4.Búsqueda voraz.\n5.Búsqueda de A* ");
 				e = TECLADO.nextInt();
@@ -113,12 +112,12 @@ public class ClasePrincipal extends JPanel {
 				default:
 					System.out.println("Opción no válida.\n");
 				}
-			}catch(Exception i){
-				System.err.println("Error solo se aceptan datos numericos.\n");				
+			} catch (Exception i) {
+				System.err.println("Error solo se aceptan datos numericos.\n");
 				TECLADO = new Scanner(System.in);
 			}
-		}while(!salir);
-	
+		} while (!salir);
+
 	}
 
 	public static void menu() {
@@ -128,7 +127,7 @@ public class ClasePrincipal extends JPanel {
 		MainLaberintoApp app = null;
 		LwjglApplication lwjglApp = null;
 		LwjglApplicationConfiguration config;
-		ClaseJSONLeer json ;
+		ClaseJSONLeer json;
 		int opcion;
 		do {
 			try {
@@ -149,31 +148,31 @@ public class ClasePrincipal extends JPanel {
 					obtenerDimensionesJson();
 					obtenerEstrategia();
 					break;
-				
+
 				default:
 					System.out.println("Por favor inserte una de las opciones disponibles.");
 					salir = false;
 				}
-				
+
 			} catch (NumberFormatException e) {
 				System.err.println("Error solo se aceptan datos numericos, vuelva a introducir la opción.");
 				TECLADO = new Scanner(System.in);
 			}
 
-				if (!salir && valido) {
-					json = new ClaseJSONLeer(filas,columnas);
-					app = fromJSON ? json.getLaberintoFromJSON() : (new MainLaberintoApp());
-					if (!fromJSON)
-						app.setAnchuraAltura(filas, columnas);
+			if (!salir && valido) {
+				json = new ClaseJSONLeer(filas, columnas);
+				app = fromJSON ? json.getLaberintoFromJSON() : (new MainLaberintoApp());
+				if (!fromJSON)
 					app.setAnchuraAltura(filas, columnas);
-					app.setEstrategia(estrategia);
-					app.setFromJSON(fromJSON);
-					config = new LwjglApplicationConfiguration();
-					config.width = 800;
-					config.height = 600;
-					config.disableAudio = true;
-					lwjglApp = new LwjglApplication(app, config);
-				}
+				app.setAnchuraAltura(filas, columnas);
+				app.setEstrategia(estrategia);
+				app.setFromJSON(fromJSON);
+				config = new LwjglApplicationConfiguration();
+				config.width = 800;
+				config.height = 600;
+				config.disableAudio = true;
+				lwjglApp = new LwjglApplication(app, config);
+			}
 		} while (!valido && !salir);
 	}
 

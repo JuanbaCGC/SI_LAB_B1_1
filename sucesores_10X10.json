@@ -1,5 +1,5 @@
 {
     "INITIAL": "(0, 0)",
     "OBJETIVE": "(9, 9)",
-    "MAZE": "problema_10x10_maze.json"
+    "MAZE": "sucesores_10X10_maze.json"
 }

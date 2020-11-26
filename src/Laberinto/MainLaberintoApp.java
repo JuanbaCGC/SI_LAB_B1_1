@@ -82,12 +82,12 @@ public class MainLaberintoApp extends ApplicationAdapter {
 				problema = new Problema(estadoInicial, objetivo, alturaLaberinto, anchuraLaberinto, estrategia, maze,
 						valoresJSON);
 				rl.busqueda(problema, 1000000, estrategialab);
-				System.out.println("Estrategia utilizada: "+estrategialab);
+				System.out.println("Estrategia utilizada: " + estrategialab);
 				acabado = true;
 			}
 			if (!acabado && !fromJSON) {
 				celdasValor = laberinto.celdasValor;
-				jsone = new ClaseJSONEscribir(alturaLaberinto, anchuraLaberinto,laberinto.laberinto,celdasValor);
+				jsone = new ClaseJSONEscribir(alturaLaberinto, anchuraLaberinto, laberinto.laberinto, celdasValor);
 				FileHandle fh;
 				fh = new FileHandle("puzzle_loop_" + alturaLaberinto + "x" + anchuraLaberinto + "_20.png");
 
