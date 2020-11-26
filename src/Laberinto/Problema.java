@@ -14,17 +14,15 @@ public class Problema {
 	Estado objetivo;
 	int altura;
 	int anchura;
-	String estrategia;
 	List<Celda> laberinto;
 	List<Estado> celdasValor;
 
-	public Problema(Estado estadoInicial, Estado objetivo, int alt, int anch, String estr, List<Celda> laberinto,
+	public Problema(Estado estadoInicial, Estado objetivo, int alt, int anch, List<Celda> laberinto,
 			List<Estado> celdasValor) {
 		this.estadoInicial = estadoInicial;
 		this.objetivo = objetivo;
 		this.altura = alt;
 		this.anchura = anch;
-		this.estrategia = estr;
 		this.laberinto = laberinto;
 		this.celdasValor = celdasValor;
 

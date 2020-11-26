@@ -17,8 +17,6 @@ import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 
 public class WilsonsLaberinto {
-	Estado estadoInicial;
-	Estado estadoObjetivo;
 	Problema problema;
 	Random aleatorio = new Random();
 	ResolverLaberinto a;
@@ -154,16 +152,8 @@ public class WilsonsLaberinto {
 
 			if (estaCompleto()) {
 				Celda celdaFinal = siguienteCelda;
-				a = new ResolverLaberinto(altura, anchura, estrategia, laberinto);
-				a.inicializarValoresCeldas();
-				celdasValor = a.celdasValor;
 				System.out.println("Celda final: fila --> " + celdaFinal.x + " columna --> " + celdaFinal.y + "\n");
-				estadoInicial = a.obtenerEstadoInicial();
-				estadoObjetivo = a.obtenerEstadoObjetivo();
-				System.out.println("Celda inicial: " + estadoInicial + ", Celda Objetivo: " + estadoObjetivo);
-				problema = new Problema(estadoInicial, estadoObjetivo, altura, anchura, estrategia, laberinto,
-						celdasValor);
-				a.busqueda(problema, 1000000, estrategia);
+				System.out.println("\nSE HA CONSTRUIDO EL LABERINTO CON ÉXITO.");	
 			}
 
 		}

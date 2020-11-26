@@ -195,7 +195,7 @@ public class ResolverLaberinto {
 		return c;
 	}
 
-	public boolean esSolucion(Problema problema, Nodo nodo) {
+	public boolean funcionObjetivo(Problema problema, Nodo nodo) {
 		boolean solucion = false;
 		if (problema.objetivo.getIdEstado().getFila() == nodo.estado.getIdEstado().getFila()
 				&& problema.objetivo.getIdEstado().getColumna() == nodo.estado.getIdEstado().getColumna()) {
@@ -240,7 +240,7 @@ public class ResolverLaberinto {
 		boolean esSolucion = false;
 		while (!frontera.isEmpty() && !esSolucion) {
 			nodo = frontera.poll();
-			if (esSolucion(problema, nodo)) {
+			if (funcionObjetivo(problema, nodo)) {
 				esSolucion = true;
 
 			} else if (!visitados.pertenece(nodo.getEstado()) && nodo.profundidad < profundidad) {

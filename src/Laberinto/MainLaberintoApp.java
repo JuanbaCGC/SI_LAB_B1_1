@@ -30,6 +30,8 @@ public class MainLaberintoApp extends ApplicationAdapter {
 	ResolverLaberinto rl;
 	Problema problema;
 	Texture tex;
+	Estado estadoInicial;
+	Estado estadoObjetivo;
 
 	boolean acabado = false;
 	Pixmap pixmap;
@@ -79,14 +81,23 @@ public class MainLaberintoApp extends ApplicationAdapter {
 				valoresJSON = rl.valoresJSON;
 				Estado estadoInicial = rl.obtenerEstadoInicialJSON();
 				Estado objetivo = rl.obtenerEstadoObjetivoJSON();
-				problema = new Problema(estadoInicial, objetivo, alturaLaberinto, anchuraLaberinto, estrategia, maze,
+				problema = new Problema(estadoInicial, objetivo, alturaLaberinto, anchuraLaberinto, maze,
 						valoresJSON);
 				rl.busqueda(problema, 1000000, estrategialab);
 				System.out.println("Estrategia utilizada: " + estrategialab);
 				acabado = true;
 			}
 			if (!acabado && !fromJSON) {
-				celdasValor = laberinto.celdasValor;
+				rl = new ResolverLaberinto(alturaLaberinto, anchuraLaberinto, estrategialab, maze);
+				rl.inicializarValoresCeldas();
+				celdasValor = rl.celdasValor;
+				estadoInicial = rl.obtenerEstadoInicial();
+				estadoObjetivo = rl.obtenerEstadoObjetivo();
+				System.out.println("Celda inicial: " + estadoInicial + ", Celda Objetivo: " + estadoObjetivo);
+				problema = new Problema(estadoInicial, estadoObjetivo, alturaLaberinto, anchuraLaberinto, maze,
+						celdasValor);
+				rl.busqueda(problema, 1000000, estrategialab);
+				
 				jsone = new ClaseJSONEscribir(alturaLaberinto, anchuraLaberinto, laberinto.laberinto, celdasValor);
 				FileHandle fh;
 				fh = new FileHandle("puzzle_loop_" + alturaLaberinto + "x" + anchuraLaberinto + "_20.png");
