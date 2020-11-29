@@ -85,6 +85,9 @@ public class MainLaberintoApp extends ApplicationAdapter {
 						valoresJSON);
 				rl.busqueda(problema, 1000000, estrategialab);
 				System.out.println("Estrategia utilizada: " + estrategialab);
+				FileHandle fh;
+				fh = new FileHandle("puzzle_loop_" + alturaLaberinto + "x" + anchuraLaberinto + "_20.png");
+				PixmapIO.writePNG(fh, pixmap);
 				acabado = true;
 			}
 			if (!acabado && !fromJSON) {

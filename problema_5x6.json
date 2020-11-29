@@ -1,0 +1,5 @@
+{
+    "INITIAL": "(0, 0)",
+    "OBJETIVE": "(4, 5)",
+    "MAZE": "problema_5x6_maze.json"
+}
